@@ -27,7 +27,7 @@ export default function Home() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/analyze", {
+      const response = await fetch("https://sentiment-analysis-ji13.onrender.com/analyze", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-black-100">
       <div className="w-full max-w-xl bg-black rounded-2xl shadow-xl p-8">
-        <h1 className="text-2xl font-bold mb-4 text-center">Sentiment Analyzer</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center text-white">Sentiment Analyzer</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <textarea
             className="border p-3 rounded-md resize-none h-32"
@@ -82,21 +82,21 @@ export default function Home() {
 
         {result && (
           <div className="mt-6 text-center">
-            <h2 className="text-xl font-semibold mb-2">
+            <h2 className="text-xl font-semibold mb-2 text-white">
               Overall Sentiment:{" "}
               <span
                 className={`${
                   result.label === "Positive"
-                    ? "text-green-600"
+                    ? "text-green-400"
                     : result.label === "Negative"
-                    ? "text-red-600"
-                    : "text-gray-600"
+                    ? "text-red-400"
+                    : "text-gray-400"
                 }`}
               >
                 {result.label}
               </span>
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-white">
               Positive: {result.scores.positive}% | Negative:{" "}
               {result.scores.negative}%
             </p>
