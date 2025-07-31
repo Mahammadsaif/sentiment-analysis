@@ -1,15 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend
-} from "chart.js";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -45,18 +36,6 @@ export default function Home() {
     } catch (err) {
       setError("Failed to fetch sentiment data.");
     }
-  };
-
-  const chartData = {
-    labels: ["Positive", "Negative"],
-    datasets: [
-      {
-        label: "Sentiment Score",
-        data: result ? [result.scores.positive, result.scores.negative] : [0, 0],
-        backgroundColor: ["#4CAF50", "#F44336"],
-        borderWidth: 1
-      }
-    ]
   };
 
   return (
@@ -96,16 +75,9 @@ export default function Home() {
                 {result.label}
               </span>
             </h2>
-            <p className="mb-4 text-white">
-              Positive: {result.scores.positive}% | Negative:{" "}
-              {result.scores.negative}%
-            </p>
-
-            <div className="w-64 mx-auto">
-              <Pie data={chartData} />
-            </div>
           </div>
         )}
+
       </div>
     </main>
   );
